@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<div class="text-center h1 text-danger">Create New Chatting Room</div>
+<div class="container">
+<form method="POST" enctype="multipart/form-data">
+  <dl>
+    {{ render_field(form.name, class='form-control') }}
+    {{ render_field(form.description, class='form-control') }}
+    
+    </dl>
+  <p><input type=submit value=Create class="btn btn-info">
+</form>
+{{form.csrf_token}}
+</div>
+
+{% endblock %}

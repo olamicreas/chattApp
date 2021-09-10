@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<style>
+    .design{
+    
+        display: flex;
+        align-items: center;
+        margin: span0px;
+        justify-content: space-between;
+        background-color:ghostwhite;
+        padding: 1rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+           
+        
+    
+        }
+    .design button{
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        background-color: inherit;
+        border: none;
+    
+    
+    
+    }
+    .design button:active  {
+        background-color: gainsboro;
+        
+    
+    }
+    .design button:focus  {
+
+        -webkit-animation: ease-in-out;
+        animation: ease-in-out;
+        animation-duration: 3s;
+    }
+    .tabcontent {
+        display: none;
+        font-weight: bolder;
+        color: black;
+        font-family: cursive;
+        
+        
+
+    }
+</style>
+    
+<script>
+    
+    function Open(evt, name) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+            
+        }
+        document.getElementById(name).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+</script>
+    <div class="conntainer">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand">ChatApp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/logout">Log out?</a>
+                      </li>
+            
+                
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/personal">{{current_user.username}}</a>
+                      </li>
+                      <li class="nav-item">
+                        <form action="{{url_for('result')}}" class='d-flex'>
+                            <input class="form-control me-2" type="search" placeholder="Search username" aria-label="Search" name="q">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                      </li>    
+                    </ul>     
+                </div> 
+                
+                      
+            </div>
+        </nav> 
+    
+    
+    </div>
+    
+    <div class="design">
+        <button class="tablinks btn btn-outline" onclick="Open('event', 'onlineUser')"><h4>Chats</h4></button>
+        <button class="tablinks btn btn-outline" onclick="Open('event', 'Chat')" ><h4>Group Chat</h4></button>
+        <button class="tablinks btn btn-outline" onclick="Open('event', 'Users')"><h4>All Users</h4></button>
+        
+    
+    </div>
+    <div id='onlineUser' class="tabcontent">
+        <br>
+
+        <a href="{{url_for('messages')}}" style="text-decoration-line: none; color: black;" class="btn btn-outline-info" >View ur Messages</a>      
+        <br>
+        <br>
+        <i class='fa fa-comments fa-5x'></i>
+    
+            
+
+    </div>
+  
+    <div id="Chat" class="tabcontent">
+        <h3>Soon to come <i class="fa fa-bell" aria-hidden="true"></i> </h3>
+        <br>
+        <i class="fa fa-universal-access fa-5x" aria-hidden="true" style="color: red;"></i>
+        
+    </div>
+    
+    <div id="Users" class="tabcontent">
+    
+        {% for u in users %}
+        <div style="display: flex;" class="mt-3">
+           <a href="{{url_for('profile', id=u.id)}}">
+             <img src="{{url_for('static', filename='images/' + u.image)}}"  width="70px" height="70px" class="rounded-circle account-img" alt="User-Profile-Image" style="margin-right: 10px;">
+            </a>
+          <h6 style="margin-top: 18px;"><a href="{{url_for('sendmessage')}}" style="text-decoration-line: none ; color: black;">{{ u.username }}</a></h6>
+        </div>
+    
+        
+        {% endfor %}
+          
+    </div>
+
+    
+            
+    
+        
+       
+        
+    
+    </div>
+  
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<div class="text-center h1 text-success" >Send message to {{recipient}}</div>
+
+<div></div>
+
+{% for m in author.messages_sent %}
+<p style="width: 40%; height: 50px; background-color: gainsboro; " >{{m.content}}</p>
+{% endfor %}
+{% for u in user.messages_recieved %}
+<p style="width: 40%; height: 50px; background-color: cornsilk;">{{u.content}}</p>
+{% endfor %}
+ 
+</div>
+
+{% if author %}
+
+{% endif %}
+<div class="container">
+<form method="POST" enctype="multipart/form-data">
+  <dl class="text-center" style="margin-top: 30%;">
+    {{ render_field(form.content, class='form-control') }}<button class="btn btn-info">Send</button>
+  </dl>
+ 
+</form>
+{{form.csrf_token}}
+
+</div>
+
+
+{% endblock %}

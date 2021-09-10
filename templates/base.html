@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for category, message in messages %}
+        <li class= "alert alert-{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {% block content %}
+    {% endblock %}
+    
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}" rel="stylesheet"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}" rel="stylesheet"></script>
+    <script src="{{ url_for('static', filename='js/jquery.min.js' ) }}" rel="stylesheet"></script>
+
+
+  </body>
+  <br>
+  
+  <div class="mx-auto" style="width: 220px;" >
+    &copy;2021 Copyright: <span style="color: blue;">olamicreas</span>
+  </div> 
+</html>

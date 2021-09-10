@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    
+
+    
+
+    <div class="conntainer">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand">ChatApp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/login" >Log in</a> 
+                        </li>
+                        <br>
+                        <li>
+                            <a class="btn btn-outline-danger" aria-current="page" href="/registeration" >Sign up</a>
+                        </li>
+                    </ul>
+                        
+                </div> 
+                
+                      
+            </div>
+        </nav> 
+    
+    
+    </div>
+
+
+    <div class="text-center mt-5" style="margin-bottom: 80%;"><h1>WELCOME TO MY CHATAPP </h1></div>
+  
+    <div class="containe">
+            <div class='d-flex justify-content-center'>
+                
+                    <form action="{{url_for('login')}}">
+                        <input type="submit" value="LOG IN" class="btn btn-info" style="margin-right: 20px;">
+                    </form>
+                    <form action="{{url_for('registeration')}}" >
+                        <input type="submit" value="SIGN UP" class="btn btn-outline-danger">
+                    </form>
+                
+            </div>
+    </div>
+
+</div>
+{% endblock %}
